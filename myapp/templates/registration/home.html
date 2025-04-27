@@ -333,7 +333,7 @@
     top: -50px;
     width: 30px;
     height: 30px;
-    background-image: url('../img/sakura.png');
+    background-image: url('/media/products/sakura.png');
     background-size: cover;
     animation: fall linear infinite;
     pointer-events: none;
@@ -365,7 +365,7 @@
 <body>
   <header class="first_head">
     <div style="display: flex; align-items: center; gap: 10px;">
-      <img src="{{ MEDIA_URL }}products/logo-harubayan.png" alt="Logo Harubayan" style="height: 35px; width: 35px; border-radius: 50%; object-fit: cover;">
+      <img src="/media/products/logo-harubayan.png" alt="Logo Harubayan" style="height: 35px; width: 35px; border-radius: 50%; object-fit: cover;">
       <strong>Haru Bayan</strong>
   </div>  
     <nav>
@@ -489,21 +489,28 @@
 
   <script>
     const hero = document.getElementById('hero');
-    const bgImages = ['img/mainpics/hero/pic1.jpg', 'img/mainpics/hero/pic2.jpg', 'img/mainpics/hero/pic3.jpg', 'img/mainpics/hero/pic4.webp', 'img/mainpics/hero/pic5.jpg'];
-    let current = 0;
+const bgImages = [
+    '/media/products/pic1.jpg', // Make sure this path is correct
+    'img/mainpics/hero/pic2.jpg', 
+    'img/mainpics/hero/pic3.jpg', 
+    'img/mainpics/hero/pic4.webp', 
+    'img/mainpics/hero/pic5.jpg',
+  ];
+let current = 0;
 
-    function changeBackground() {
-      hero.style.backgroundImage = `url('${bgImages[current]}')`;
-      current = (current + 1) % bgImages.length;
-    }
+function changeBackground() {
+  hero.style.backgroundImage = `url('${bgImages[current]}')`;
+  current = (current + 1) % bgImages.length;
+}
 
-    changeBackground();
-    setInterval(changeBackground, 4000);
+changeBackground();
+setInterval(changeBackground, 4000);
 
-    const scrollTopBtn = document.getElementById("scrollTopBtn");
-    window.onscroll = () => {
-      scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
-    };
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+window.onscroll = () => {
+  scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+};
+
 // Get modal elements
 const loginModal = document.getElementById("login-modal");
 const signupModal = document.getElementById("signup-modal");
