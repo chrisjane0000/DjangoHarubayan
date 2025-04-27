@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Haru Bayan</title>
+  <link rel="icon" type="image/png" href="{{ MEDIA_URL }}products/logo-harubayan.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #fff;
+      color: #333;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+
+    header {
+      background-color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .first_head {
+      background-color: #9b001e;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 1.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffcc00;
+    }
+
+    .user-info {
+      position: relative;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #fff;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+      z-index: 1;
+      right: 0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+
+    .dropdown-content a {
+      color: #9b001e;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+    }
+  
+    .dropdown-content a:hover {
+      background-color: #ee8585;
+    }
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .hero {
+      background-size: cover;
+      background-position: center;
+      text-align: center;
+      padding: 6rem 2rem;
+      color: white;
+      position: relative;
+      transition: background-image 1s ease-out;
+      height: auto;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero h1 {
+      font-size: 1.8rem;
+      max-width: 900px;
+      margin: auto;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1.5rem;
+      border-radius: 10px;
+      font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    }
+
+    .hero button {
+      margin-top: 1rem;
+      background-color: #bb0e42;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      width: 15%;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 40px;
+      color: #fff;
+      transition: background 0.3s;
+      box-shadow: 0 1px 17px rgb(233, 140, 140);
+
+    }
+
+    .hero button:hover {
+      background-color: #dfcade;
+      color: #bb0e42;
+      border-color: #9b001e;
+    }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+      gap: 2rem;
+      margin: 3rem auto; /* Adjusted margins */
+      text-align: center;
+      justify-content: center;
+      display: flex;
+      flex-wrap: wrap;
+      
+    }
+
+    .service-box {
+      background: rgba(155, 0, 30, 0.9);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      color: white;
+      display: flex;
+      flex-direction: row; /* Keep the icon and text inline */
+      justify-content: center; /* Center horizontally */
+      align-items: center; /* Center vertically */
+      height: 120px; /* Ensures uniform box height */
+      padding-left: 5rem; /* Adds left padding */
+      padding-right: 5rem; /* Adds right padding */
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.493);
+    }
+
+    .service-box:hover {
+      transform: translateY(-5px);
+    }
+
+    .service-box img {
+      width: 40px; /* Adjusted icon size */
+      margin-right: 1rem; /* Space between icon and text */
+    }
+
+    .service-box div {
+      font-size: 1.2rem; /* Adjusted text size */
+    }
+
+    .about {
+      text-align: center;
+      max-width: 75%;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: #f8d7da;
+      border-radius: 10px;
+      color: #9b001e;
+      line-height: 1.8;
+      border: 0.5px solid #9b1414;
+    }
+
+    .gallery {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 2rem auto;
+      flex-wrap: wrap;
+    }
+
+    .gallery img {
+      width: 350px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 1px 10px rgba(0, 0, 0, 0.5);
+    }
+
+    .testimonials, .faq {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 3rem auto;
+  padding: 2rem;
+  
+}
+
+.testimonials-box, .faq-box {
+  background-color: #f8d7da;
+  padding: 2rem;
+  border-radius: 10px;
+  flex: 1;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 0.5px solid #9b1414;
+}
+
+.testimonials h2, .faq h2 {
+  color: #9b001e;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.testimonial, .faq-item {
+  margin-bottom: 1rem;
+}
+
+.faq-item strong {
+  display: block;
+  color: #9b001e;
+  margin-bottom: 0.5rem;
+}
+
+
+#scrollTopBtn {
+  position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #9b001e;
+      color: white;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      max-width: 40px;
+      max-height: 50px;
+      box-shadow: 0 1px 17px rgb(223, 199, 199);
+}
+
+#scrollTopBtn:hover {
+  background-color: #c4002c; /* Darker hover effect */
+}
+
+
+    /* === MODAL AUTHENTICATION === */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  .modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 5px;
+  }
+
+  .close-btn {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    float: right;
+  }
+
+  .close-btn:hover,
+  .close-btn:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  button {
+    padding: 10px 20px;
+    background-color: #9b001e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  button:hover {
+    background-color: #8a0019;
+  }
+
+    footer {
+      background-color: #9b001e;
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+    }
+    .sakura {
+    position: fixed;
+    top: -50px;
+    width: 30px;
+    height: 30px;
+    background-image: url('../img/sakura.png');
+    background-size: cover;
+    animation: fall linear infinite;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateX(0) rotate(0);
+      top: -50px;
+    }
+    100% {
+      transform: translateX(200px) rotate(360deg);
+      top: 100vh;
+    }
+  }
+
+  .sakura:nth-child(odd) {
+    animation-duration: 8s;
+    animation-delay: 2s;
+  }
+
+  .sakura:nth-child(even) {
+    animation-duration: 6s;
+    animation-delay: 4s;
+  }
+  </style>
+</head>
+<body>
+  <header class="first_head">
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <img src="{{ MEDIA_URL }}products/logo-harubayan.png" alt="Logo Harubayan" style="height: 35px; width: 35px; border-radius: 50%; object-fit: cover;">
+      <strong>Haru Bayan</strong>
+  </div>  
+    <nav>
+      <a href="haruBayan.html">HOME</a>
+      <a href="{% url 'myapp:menu_categories' %}">MENU</a>
+      <a href="Services.html">SERVICE</a>
+      <a href="Contact.html">CONTACT</a>
+    </nav>
+    <div class="user-info">
+      <div class="dropdown">
+        <i class="fas fa-user-circle" style="font-size: 2rem; color: #fce4ec;"></i>
+        <span style="margin-left: 0.5rem; color: white;" id="dropdown-username">
+            {% if user.is_authenticated %}
+              {{ user.username }}
+            {% else %}
+              Guest
+            {% endif %}
+          </span>
+          
+        <i class="fas fa-chevron-down" style="color: white; margin-left: 0.5rem;"></i>
+        <div class="dropdown-content">
+          <!-- For Guest (Login/Signup) -->
+          <a href="{% url 'myapp:login' %}" id="login-btn">Logout</a>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="hero">
+    <h1>"Bringing the heart of Japan to every Filipino plate—one authentic bite at a time."</h1>
+    <button onclick="window.location.href='../user-login.html'">Order Now</button>
+  </section>
+
+  <section class="services">
+    <div class="service-box">
+      <img src="https://img.icons8.com/color/96/000000/restaurant.png" alt="Dine In">
+      <div onclick="window.location.href='Menu-categories.html'" style="cursor: pointer;">DINE IN</div>
+    </div>
+    <div class="service-box">
+      <img src="https://img.icons8.com/color/96/000000/downloads.png" alt="App">
+      <div>Download the App</div>
+    </div>
+    <div class="service-box">
+      <img src="https://img.icons8.com/color/96/000000/delivery.png" alt="Delivery">
+      <div onclick="window.location.href='Menu-categories.html'" style="cursor: pointer;">DELIVERY</div>
+    </div>
+  </section>  
+
+  <section class="about">
+    <p>Haru Bayan was founded to bring the authentic flavors of Japan to the Philippines inspired by traditional Japanese culinary techniques, we serve freshly rolled sushi, teppanyaki, ramen, crispy tempura, and flavorful donburi. We proudly remain passionate to capture the true essence of Japanese culture.</p>
+  </section>
+
+  <section class="gallery">
+    <img src="img/mainpics/gallery/g1.webp"alt="food1">
+    <img src="img/mainpics/gallery/g2.jpg" alt="food2">
+    <img src="img/mainpics/gallery/g3.jpg" alt="food3">
+  </section>
+
+  <section class="testimonials">
+    <div class="testimonials-box">
+      <h2>Customer Testimonials</h2>
+      <div class="testimonial">"Best ramen in town! Super authentic!" – Ana G.</div>
+      <div class="testimonial">"Love the ambiance and the sushi!" – Mark R.</div>
+      <div class="testimonial">"Feels like I'm in Tokyo!" – Jenna P.</div>
+    </div>
+    
+    <div class="faq-box">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <strong>Do you accept online payments?</strong>
+        Yes, we accept GCash and cash.
+      </div>
+      <div class="faq-item">
+        <strong>Do you deliver outside Cagayan de Oro?</strong>
+        Currently, we serve only within Cagayan de Oro.
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    Copyright &copy; 2025 Haru Bayan. Created by MyTech Corp.
+  </footer>
+
+  <!-- Login Modal -->
+<div id="login-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-login">&times;</span>
+    <h2>Login</h2>
+    <form>
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required />
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required />
+      <button type="submit">Login</button>
+    </form>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" id="close-signup">&times;</span>
+    <h2>Signup</h2>
+    <form>
+      <label for="new-username">Username:</label>
+      <input type="text" id="new-username" name="new-username" required />
+      <label for="new-password">Password:</label>
+      <input type="password" id="new-password" name="new-password" required />
+      <label for="confirm-password">Confirm Password:</label>
+      <input type="password" id="confirm-password" name="confirm-password" required />
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+</div>
+
+
+  <button id="scrollTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script>
+    const hero = document.getElementById('hero');
+    const bgImages = ['img/mainpics/hero/pic1.jpg', 'img/mainpics/hero/pic2.jpg', 'img/mainpics/hero/pic3.jpg', 'img/mainpics/hero/pic4.webp', 'img/mainpics/hero/pic5.jpg'];
+    let current = 0;
+
+    function changeBackground() {
+      hero.style.backgroundImage = `url('${bgImages[current]}')`;
+      current = (current + 1) % bgImages.length;
+    }
+
+    changeBackground();
+    setInterval(changeBackground, 4000);
+
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = () => {
+      scrollTopBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    };
+// Get modal elements
+const loginModal = document.getElementById("login-modal");
+const signupModal = document.getElementById("signup-modal");
+const loginBtn = document.getElementById("login-btn");
+const signupBtn = document.getElementById("signup-btn");
+const closeLogin = document.getElementById("close-login");
+const closeSignup = document.getElementById("close-signup");
+const usernameDisplay = document.getElementById("dropdown-username");
+
+// Login modal
+loginBtn.onclick = function() {
+  loginModal.style.display = "block";
+}
+
+// Signup modal
+signupBtn.onclick = function() {
+  signupModal.style.display = "block";
+}
+
+// Close login modal
+closeLogin.onclick = function() {
+  loginModal.style.display = "none";
+}
+
+// Close signup modal
+closeSignup.onclick = function() {
+  signupModal.style.display = "none";
+}
+
+// Close modals if clicked outside
+window.onclick = function(event) {
+  if (event.target == loginModal || event.target == signupModal) {
+    loginModal.style.display = "none";
+    signupModal.style.display = "none";
+  }
+}
+
+// Mock login action
+document.querySelector("#login-modal form").onsubmit = function(event) {
+  event.preventDefault();
+
+  // Get the entered username for login
+  const username = document.getElementById("username").value;
+
+  if (username) {
+    // After login, update the username in the dropdown
+    usernameDisplay.textContent = username;
+
+    // Hide login/signup buttons and show logout
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("signup-btn").style.display = "none";
+    document.getElementById("logout-link").style.display = "block";
+    document.getElementById("orders-link").style.display = "block";
+
+    // Close the modal after successful login
+    loginModal.style.display = "none";
+  } else {
+    alert("Please enter a username!");
+  }
+}
+
+// Mock signup action
+document.querySelector("#signup-modal form").onsubmit = function(event) {
+  event.preventDefault();
+
+  // Get the entered username for signup
+  const username = document.getElementById("new-username").value;
+
+  if (username) {
+    // After signup, update the username in the dropdown
+    usernameDisplay.textContent = username;
+
+    // Hide login/signup buttons and show logout
+    document.getElementById("login-btn").style.display = "none";
+    document.getElementById("signup-btn").style.display = "none";
+    document.getElementById("logout-link").style.display = "block";
+    document.getElementById("orders-link").style.display = "block";
+
+    // Close the modal after successful signup
+    signupModal.style.display = "none";
+  } else {
+    alert("Please enter a username!");
+  }
+}
+
+// Logout action
+document.getElementById("logout-link").onclick = function() {
+  // Reset to guest state
+  usernameDisplay.textContent = "Guest";
+
+  // Show login/signup buttons again
+  document.getElementById("login-btn").style.display = "block";
+  document.getElementById("signup-btn").style.display = "block";
+
+  // Hide logout link and orders link
+  document.getElementById("logout-link").style.display = "none";
+  document.getElementById("orders-link").style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    for (let i = 0; i < 20; i++) {
+      const sakura = document.createElement("div");
+      sakura.className = "sakura";
+      sakura.style.left = Math.random() * 100 + "vw";
+      sakura.style.animationDelay = Math.random() * 5 + "s";
+      document.body.appendChild(sakura);
+    }
+  });
+
+  generateSakura();
+</script>
+
+</body>
+</html>

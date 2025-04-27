@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu Categories</title>
+  <link rel="icon" type="image/png" href="img/logo-harubayan.png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header class="first_head">
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <img src="img/mainpics/logo/logo-harubayan.png" alt="Haru Bayan Logo" style="height: 35px; width: 35px; border-radius: 50%; object-fit: cover;">
+        <strong>Haru Bayan</strong>
+      </div>
+    <nav>
+      <a href="haruBayan.html">HOME</a>
+      <a href="Menu-categories.html">MENU</a>
+      <a href="Services.html">SERVICE</a>
+      <a href="Contact.html">CONTACT</a>
+    </nav>
+    <div class="user-info">
+      <div class="dropdown">
+        <i class="fas fa-user-circle" style="font-size: 2rem; color: #fce4ec;"></i>
+        <span style="margin-left: 0.5rem; color: white;" id="dropdown-username">
+          {% if user.is_authenticated %}
+            {{ user.username }}
+          {% else %}
+            Guest
+          {% endif %}
+        </span>
+        <i class="fas fa-chevron-down" style="color: white; margin-left: 0.5rem;"></i>
+        <div class="dropdown-content">
+          <!-- For Guest (Login/Signup) -->
+          <a href="{% url 'myapp:login' %}" id="login-btn">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <header class="slider-container">
+    <div class="slider-images" id="sliderImages">
+      <img src="img/mainpics/slider-menu/sushi1.webp" class="slide active" alt="Sushi Slide 1">
+      <img src="img/mainpics/slider-menu/sushi1.webp" class="slide" alt="Sushi Slide 2">
+      <img src="img/mainpics/slider-menu/sushi3.avif" class="slide" alt="Sushi Slide 3">
+      <img src="img/mainpics/slider-menu/sushi4.jpg" class="slide" alt="Sushi Slide 4">
+    </div>
+    <div class="slider-text">
+      <h1>HARU BAYAN'S MENU</h1>
+      <p>Pick your favorite category</p>
+    </div>
+    
+    <div class="indicators">
+      <span class="indicator" onclick="showSlide(0)"></span>
+      <span class="indicator" onclick="showSlide(1)"></span>
+      <span class="indicator" onclick="showSlide(2)"></span>
+      <span class="indicator" onclick="showSlide(4)"></span>
+    </div>
+    
+  </header>
+  
+  <main class="menu-grid">
+    <a href="menus/Maindishes.html" class="menu-item" style="background-image: url('img/main.jpg');">
+      <div class="overlay">
+        <h2>Main Dish</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/Noodles.html" class="menu-item" style="background-image: url('img/noodle.avif');">
+      <div class="overlay">
+        <h2>Noodles</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/RiceDishes.html" class="menu-item" style="background-image: url('img/rice.jpg');">
+      <div class="overlay">
+        <h2>Rice Dishes</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/SoupsStews.html" class="menu-item" style="background-image: url('img/soup.jpg');">
+      <div class="overlay">
+        <h2>Soups & Stews</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/Sidedishes.html" class="menu-item" style="background-image: url('img/sidedish.jpg');">
+      <div class="overlay">
+        <h2>Side Dishes</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/Appetizers.html" class="menu-item" style="background-image: url('img/appetizer.jpg');">
+      <div class="overlay">
+        <h2>Appetizers</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/StreetfoodSnacks.html" class="menu-item" style="background-image: url('img/street.jpg');">
+      <div class="overlay">
+        <h2>Street Food & Snacks</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/DessertsSweet.html" class="menu-item" style="background-image: url('img/dessert.webp');">
+      <div class="overlay">
+        <h2>Desserts & Sweets</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+    <a href="menus/Beverages.html" class="menu-item" style="background-image: url('img/beverage.jpg');">
+      <div class="overlay">
+        <h2>Beverages</h2>
+        <span>View all menus</span>
+      </div>
+    </a>
+  </main>
+
+  <footer>
+    Copyright &copy; 2025 Haru Bayan. Created by MyTech Corp.
+  </footer>
+
+  <!-- Login Modal -->
+  <div id="login-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-login">&times;</span>
+      <h2>Login</h2>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Signup Modal -->
+  <div id="signup-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-signup">&times;</span>
+      <h2>Signup</h2>
+      <form>
+        <label for="new-username">Username:</label>
+        <input type="text" id="new-username" name="new-username" required />
+        <label for="new-password">Password:</label>
+        <input type="password" id="new-password" name="new-password" required />
+        <button type="submit">Signup</button>
+      </form>
+    </div>
+  </div>
+
+  <style>
+    /* === RESET & BASE === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+  
+    body {
+      background: #fff;
+      color: #333;
+    }
+  
+    /* === HEADER === */
+    header.first_head {
+      background-color: #9b001e;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    header.first_head nav a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    header.first_head nav a:hover{
+        color: #ffcc00;
+    }
+  
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    /* === DROPDOWN === */
+    .dropdown {
+      position: relative;
+      cursor: pointer;
+    }
+  
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      z-index: 1000;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+      padding: 12px 16px;
+      top: 30px;
+      right: 0;
+      border-radius: 5px;
+      margin-top: 5px;
+      margin-left: 5px;
+    }
+  
+    .dropdown-content a {
+      color: #333;
+      padding: 10px 16px;
+      text-decoration: none;
+      display: block;
+    }
+  
+    .dropdown-content a:hover {
+      background-color: #ee8585;
+    }
+  
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  
+    /* === SLIDER === */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      overflow: hidden;
+    }
+  
+    .slider-images {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  
+    .slider-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+  
+    .slider-images img.active {
+      opacity: 1;
+      z-index: 1;
+    }
+  
+    .slider-text {
+      position: absolute;
+      z-index: 2;
+      text-align: center;
+      padding: 80px 10px;
+      color: white;
+      text-shadow: 2px 2px 5px black;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  
+    .slider-text h1 {
+      font-size: 50px;
+      margin-bottom: 10px;
+    }
+  
+    .slider-text p {
+      font-size: 25px;
+    }
+  
+    .slide {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    
+  
+    /* === MENU GRID === */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+  
+    .menu-item {
+      background-size: cover;
+      background-position: center;
+      border-radius: 10px;
+      height: 150px;
+      position: relative;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+    }
+  
+    .menu-item:hover {
+      transform: scale(1.05);
+    }
+  
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+  
+    .overlay h2 {
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+  
+    .overlay span {
+      font-size: 14px;
+    }
+  
+    /* === MODAL AUTHENTICATION === */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+  
+    .modal-content {
+      background-color: #fff;
+      margin: 15% auto;
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 5px;
+    }
+  
+    .close-btn {
+      color: #aaa;
+      font-size: 28px;
+      font-weight: bold;
+      float: right;
+    }
+  
+    .close-btn:hover,
+    .close-btn:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
+  
+    input {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  
+    button {
+      padding: 10px 20px;
+      background-color: #9b001e;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+  
+    button:hover {
+      background-color: #8a0019;
+    }
+  
+    /* === FOOTER === */
+    footer {
+      background-color: #9b001e;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+    }
+  </style>
+  
+
+
+<script>
+  let currentSlide = 0;
+  const slides = document.querySelectorAll(".slide");
+  const indicators = document.querySelectorAll(".indicator");
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove("active");
+      indicators[i].classList.remove("active");
+      if (i === index) {
+        slide.classList.add("active");
+        indicators[i].classList.add("active");
+      }
+    });
+    currentSlide = index;
+  }
+
+  function autoSlide() {
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  setInterval(autoSlide, 4000); // Slide every 4 seconds
+
+
+  
+    // Modal functionality for login and signup
+    const loginBtn = document.getElementById('login-btn');
+    const signupBtn = document.getElementById('signup-btn');
+    const loginModal = document.getElementById('login-modal');
+    const signupModal = document.getElementById('signup-modal');
+    const closeLogin = document.getElementById('close-login');
+    const closeSignup = document.getElementById('close-signup');
+  
+    // Show login modal
+    loginBtn.addEventListener('click', () => {
+      loginModal.style.display = 'block';
+      signupModal.style.display = 'none'; // Hide signup modal when login is clicked
+    });
+  
+    // Show signup modal
+    signupBtn.addEventListener('click', () => {
+      signupModal.style.display = 'block';
+      loginModal.style.display = 'none'; // Hide login modal when signup is clicked
+    });
+  
+    // Close login modal
+    closeLogin.addEventListener('click', () => loginModal.style.display = 'none');
+  
+    // Close signup modal
+    closeSignup.addEventListener('click', () => signupModal.style.display = 'none');
+  
+    // Close modals when clicked outside
+    window.onclick = function(event) {
+      if (event.target === loginModal) {
+        loginModal.style.display = 'none';
+      }
+      if (event.target === signupModal) {
+        signupModal.style.display = 'none';
+      }
+    };
+  </script>
+  
+</body>
+</html>
